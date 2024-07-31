@@ -1,6 +1,6 @@
 /*-
  * #%L
- * Template Add-on
+ * LocaleComboBox Add-on
  * %%
  * Copyright (C) 2024 Flowing Code
  * %%
@@ -17,9 +17,9 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons.template.test;
+package com.flowingcode.vaadin.addons.localecombobox.test;
 
-import com.flowingcode.vaadin.addons.template.TemplateAddon;
+import com.flowingcode.vaadin.addons.localecombobox.LocaleComboBox;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class SerializationTest {
   @Test
   public void testSerialization() throws ClassNotFoundException, IOException {
     try {
-      testSerializationOf(new TemplateAddon());
+      testSerializationOf(new LocaleComboBox());
     } catch (Exception e) {
       Assert.fail("Problem while testing serialization: " + e.getMessage());
     }
