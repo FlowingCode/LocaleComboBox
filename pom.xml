@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.flowingcode.vaadin.addons</groupId>
-    <artifactId>template-addon</artifactId>
+    <artifactId>locale-combo-box-addon</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Template Add-on</name>
-    <description>Template Add-on for Vaadin Flow</description>
+    <name>LocaleComboBox</name>
+    <description>LocaleComboBox Add-on for Vaadin Flow</description>
     <url>https://www.flowingcode.com/en/open-source/</url>
 
     <properties>
@@ -39,9 +39,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/FlowingCode/AddonStarter24</url>
-        <connection>scm:git:git://github.com/FlowingCode/AddonStarter24.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/AddonStarter24.git</developerConnection>
+        <url>https://github.com/FlowingCode/LocaleComboBox</url>
+        <connection>scm:git:git://github.com/FlowingCode/LocaleComboBox.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/LocaleComboBox.git</developerConnection>
         <tag>master</tag>
     </scm>
 

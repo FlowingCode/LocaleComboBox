@@ -1,6 +1,6 @@
 /*-
  * #%L
- * Template Add-on
+ * LocaleComboBox Add-on
  * %%
  * Copyright (C) 2024 Flowing Code
  * %%
@@ -18,15 +18,20 @@
  * #L%
  */
 
-package com.flowingcode.vaadin.addons.template;
+package com.flowingcode.vaadin.addons.localecombobox;
 
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.dependency.NpmPackage;
+import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
 
+@DemoSource
+@PageTitle("LocaleComboBox Add-on Demo")
 @SuppressWarnings("serial")
-@NpmPackage(value = "@polymer/paper-input", version = "3.2.1")
-@JsModule("@polymer/paper-input/paper-input.js")
-@Tag("paper-input")
-public class TemplateAddon extends Div {}
+@Route(value = "demo", layout = LocaleComboBoxDemoView.class)
+public class LocaleComboBoxDemo extends Div {
+
+  public LocaleComboBoxDemo() {
+    add(new LocaleComboBox());
+  }
+}

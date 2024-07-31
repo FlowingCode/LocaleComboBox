@@ -1,23 +1,25 @@
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/template-addon)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/template-addon.svg)](https://vaadin.com/directory/component/template-addon)
-[![Build Status](https://jenkins.flowingcode.com/job/template-addon/badge/icon)](https://jenkins.flowingcode.com/job/template-addon)
-[![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/template-addon)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/template-addon)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/locale-combo-box-add-on)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/locale-combo-box-add-on.svg)](https://vaadin.com/directory/component/locale-combo-box-add-on)
+[![Build Status](https://jenkins.flowingcode.com/job/LocaleComboBox-addon/badge/icon)](https://jenkins.flowingcode.com/job/LocaleComboBox-addon)
+[![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/locale-combo-box-addon)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/locale-combo-box-addon)
 
-# Template Add-on
+# LocaleComboBox Add-on
 
-This is a template project for building new Vaadin 24 add-ons
+[Vaadin ComboBox](https://vaadin.com/docs/latest/components/combo-box) extension that allows to choose between multiple locales.
 
 ## Features
 
-* List the features of your add-on in here
+* Displays the locale name alongside its corresponding country flag
+* Allows to specify which locales are available for selection
+* Provides an option to change the current session locale
 
 ## Online demo
 
-[Online demo here](http://addonsv24.flowingcode.com/template)
+[Online demo here](http://addonsv24.flowingcode.com/locale-combo-box)
 
 ## Download release
 
-[Available in Vaadin Directory](https://vaadin.com/directory/component/template-addon)
+[Available in Vaadin Directory](https://vaadin.com/directory/component/locale-combo-box-add-on)
 
 ### Maven install
 
@@ -26,11 +28,10 @@ Add the following dependencies in your pom.xml file:
 ```xml
 <dependency>
    <groupId>com.flowingcode.vaadin.addons</groupId>
-   <artifactId>template-addon</artifactId>
+   <artifactId>locale-combo-box-addon</artifactId>
    <version>X.Y.Z</version>
 </dependency>
 ```
-<!-- the above dependency should be updated with latest released version information -->
 
 ```xml
 <repository>
@@ -50,7 +51,7 @@ To see the demo, navigate to http://localhost:8080/
 
 ## Release notes
 
-See [here](https://github.com/FlowingCode/TemplateAddon/releases)
+See [here](https://github.com/FlowingCode/LocaleComboBox/releases)
 
 ## Issue tracking
 
@@ -75,13 +76,11 @@ Then, follow these steps for creating a contribution:
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-TEMPLATE_ADDON is written by Flowing Code S.A.
+LocaleComboBox Add-on is written by Flowing Code S.A.
 
 # Developer Guide
 
-## Getting started
-
-Add your code samples in this section
+<!-- TODO: ## Getting started -->
 
 ## Special configuration when using Spring
 

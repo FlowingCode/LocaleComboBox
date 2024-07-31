@@ -1,6 +1,6 @@
 /*-
  * #%L
- * Template Add-on
+ * LocaleComboBox Add-on
  * %%
  * Copyright (C) 2024 Flowing Code
  * %%
@@ -17,20 +17,12 @@
  * limitations under the License.
  * #L%
  */
+vaadin-horizontal-layout.fc-locale-combo-box-item-layout {
+	align-items: center;
+	justify-content: start;
+	gap: 0.5em;
+}
 
-package com.flowingcode.vaadin.addons.template;
-
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.Route;
-
-@SuppressWarnings("serial")
-@Route("")
-public class DemoView extends VerticalLayout implements BeforeEnterObserver {
-
-  @Override
-  public void beforeEnter(BeforeEnterEvent event) {
-    event.forwardTo(TemplateDemoView.class);
-  }
+span.fc-locale-combo-box-item-flag {
+	flex-shrink: 0;
 }

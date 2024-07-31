@@ -1,6 +1,6 @@
 /*-
  * #%L
- * Template Add-on
+ * LocaleComboBox Add-on
  * %%
  * Copyright (C) 2024 Flowing Code
  * %%
@@ -18,7 +18,7 @@
  * #L%
  */
 
-package com.flowingcode.vaadin.addons.template.it;
+package com.flowingcode.vaadin.addons.localecombobox.it;
 
 import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBench;
