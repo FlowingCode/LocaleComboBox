@@ -56,10 +56,14 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   private LitRenderer<Locale> getLocaleRenderer() {
     return LitRenderer
-        .<Locale>of("<vaadin-horizontal-layout class=\"" + ITEM_LAYOUT_CLASS_NAME + "\">"
-            + "<span class=\"fi fi-${item.countryCode} " + ITEM_FLAG_CLASS_NAME
-            + "\" alt=\"${item.countryName}\'s flag\"></span>" + "<span>${item.displayName}</span>"
-            + "</vaadin-horizontal-layout>")
+        .<Locale>of(
+            """
+                <vaadin-horizontal-layout class="${item.layoutClass}">
+                    <span class="fi fi-${item.countryCode} ${item.flagClass} alt="${item.countryName}'s flag"></span>
+                    <span>${item.displayName}</span>
+                </vaadin-horizontal-layout>""")
+        .withProperty("layoutClass", loc -> ITEM_LAYOUT_CLASS_NAME)
+        .withProperty("flagClass", loc -> ITEM_FLAG_CLASS_NAME)
         .withProperty("countryCode", loc -> loc.getCountry().toLowerCase())
         .withProperty("countryName", loc -> loc.getDisplayCountry())
         .withProperty("displayName", loc -> loc.getDisplayName());
