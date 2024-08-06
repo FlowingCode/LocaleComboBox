@@ -33,14 +33,7 @@ Add the following dependencies in your pom.xml file:
 </dependency>
 ```
 
-```xml
-<repository>
-   <id>vaadin-addons</id>
-   <url>https://maven.vaadin.com/vaadin-addons</url>
-</repository>
-```
-
-For SNAPSHOT versions see [here](https://maven.flowingcode.com/snapshots/).
+Release versions are available from Maven Central repository. For SNAPSHOT versions see [here](https://maven.flowingcode.com/snapshots/).
 
 ## Building and running demo
 
