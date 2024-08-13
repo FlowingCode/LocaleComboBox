@@ -21,17 +21,71 @@
 package com.flowingcode.vaadin.addons.localecombobox;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import java.util.Locale;
 
 @DemoSource
-@PageTitle("LocaleComboBox Add-on Demo")
+@PageTitle("Display modes")
 @SuppressWarnings("serial")
 @Route(value = "demo", layout = LocaleComboBoxDemoView.class)
 public class LocaleComboBoxDemo extends Div {
 
   public LocaleComboBoxDemo() {
-    add(new LocaleComboBox());
+
+    LocaleComboBox defaultDisplayLocale = new LocaleComboBox();
+    LocaleComboBox franceLocaleCombo = new LocaleComboBox();
+    LocaleComboBox germanyLocaleCombo = new LocaleComboBox();
+    LocaleComboBox koreanLocaleCombo = new LocaleComboBox();
+    LocaleComboBox selectedLocaleCombo = new LocaleComboBox();
+
+    defaultDisplayLocale.setValue(Locale.ITALY);
+    
+    franceLocaleCombo.setDisplayLocale(Locale.FRANCE);
+    franceLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
+    franceLocaleCombo.setValue(Locale.ITALY);
+
+    germanyLocaleCombo.setDisplayLocale(Locale.GERMANY);
+    germanyLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
+    germanyLocaleCombo.setValue(Locale.ITALY);
+    
+    koreanLocaleCombo.setDisplayLocale(Locale.KOREA);
+    koreanLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
+    koreanLocaleCombo.setValue(Locale.ITALY);
+    
+    selectedLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_SELECTED);
+    selectedLocaleCombo.setValue(Locale.ITALY);
+    
+    // #if vaadin eq 0
+    add(createHorizontalContainer("Default display mode (uses default locale):", defaultDisplayLocale),
+        createHorizontalContainer("Display locales with France locale:", franceLocaleCombo),
+        createHorizontalContainer("Display locales with with Germany locale:", germanyLocaleCombo),
+        createHorizontalContainer("Display locales with Korean locale:", koreanLocaleCombo),
+        createHorizontalContainer("Display locales with selected locale:", selectedLocaleCombo));
+    // #endif
+    // show-source add(defaultDisplayLocale);
+    // show-source add(franceLocaleCombo, germanyLocaleCombo, koreanLocaleCombo);
+    // show-source add(selectedLocaleCombo);
   }
+
+  // #if vaadin eq 0
+  private HorizontalLayout createHorizontalContainer(String title, LocaleComboBox combo) {
+    Span titleSpan = new Span(new Text(title));
+    titleSpan.setWidth("300px");
+    HorizontalLayout container = new HorizontalLayout();
+    container.setWidthFull();
+    container.setAlignItems(Alignment.CENTER);
+    container.setJustifyContentMode(JustifyContentMode.BETWEEN);
+    container.add(titleSpan, combo);
+    container.expand(combo);
+    return container;
+  }
+  // #endif
+
 }
