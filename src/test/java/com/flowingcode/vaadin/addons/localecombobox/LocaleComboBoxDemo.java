@@ -40,20 +40,10 @@ public class LocaleComboBoxDemo extends Div {
   public LocaleComboBoxDemo() {
 
     LocaleComboBox defaultDisplayLocale = new LocaleComboBox();
-    LocaleComboBox franceLocaleCombo = new LocaleComboBox();
-    LocaleComboBox germanyLocaleCombo = new LocaleComboBox();
     LocaleComboBox koreanLocaleCombo = new LocaleComboBox();
     LocaleComboBox selectedLocaleCombo = new LocaleComboBox();
 
     defaultDisplayLocale.setValue(Locale.ITALY);
-    
-    franceLocaleCombo.setDisplayLocale(Locale.FRANCE);
-    franceLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
-    franceLocaleCombo.setValue(Locale.ITALY);
-
-    germanyLocaleCombo.setDisplayLocale(Locale.GERMANY);
-    germanyLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
-    germanyLocaleCombo.setValue(Locale.ITALY);
     
     koreanLocaleCombo.setDisplayLocale(Locale.KOREA);
     koreanLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
@@ -64,13 +54,11 @@ public class LocaleComboBoxDemo extends Div {
     
     // #if vaadin eq 0
     add(createHorizontalContainer("Default display mode (uses default locale):", defaultDisplayLocale),
-        createHorizontalContainer("Display locales with France locale:", franceLocaleCombo),
-        createHorizontalContainer("Display locales with with Germany locale:", germanyLocaleCombo),
         createHorizontalContainer("Display locales with Korean locale:", koreanLocaleCombo),
         createHorizontalContainer("Display locales with selected locale:", selectedLocaleCombo));
     // #endif
     // show-source add(defaultDisplayLocale);
-    // show-source add(franceLocaleCombo, germanyLocaleCombo, koreanLocaleCombo);
+    // show-source add(koreanLocaleCombo);
     // show-source add(selectedLocaleCombo);
   }
 
