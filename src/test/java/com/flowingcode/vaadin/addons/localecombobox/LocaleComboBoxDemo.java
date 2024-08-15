@@ -46,10 +46,10 @@ public class LocaleComboBoxDemo extends Div {
     defaultDisplayLocale.setValue(Locale.ITALY);
     
     koreanLocaleCombo.setDisplayLocale(Locale.KOREA);
-    koreanLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_CUSTOM);
+    koreanLocaleCombo.setDisplayMode(LocaleComboBox.DisplayMode.CUSTOM);
     koreanLocaleCombo.setValue(Locale.ITALY);
     
-    selectedLocaleCombo.setDisplayMode(LocaleComboBox.DISPLAY_SELECTED);
+    selectedLocaleCombo.setDisplayMode(LocaleComboBox.DisplayMode.SELECTED);
     selectedLocaleCombo.setValue(Locale.ITALY);
     
     // #if vaadin eq 0

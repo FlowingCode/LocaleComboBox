@@ -43,27 +43,37 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private static final String ITEM_FLAG_CLASS_NAME = "fc-locale-combo-box-item-flag";
 
   /**
-   * Constant for the default display mode.
+   * Display mode representing the built-in display modes in LocaleComboBox
    * <p>
-   * In this mode, the Locale names are displayed using the default locale's display format.
+   * These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
+   * built-in display modes.
    */
-  public static final int DISPLAY_DEFAULT = 0;
-  /**
-   * Constant for the locale-specific display mode.
-   * <p>
-   * In this mode, the Locale names are displayed using the formatting of the specific locale set by
-   * {@link #setDisplayLocale(Locale)}.
-   */
-  public static final int DISPLAY_CUSTOM = 1;
-  /**
-   * Constant for the selected display mode.
-   * <p>
-   * In this mode, the Locale names are displayed using the formatting of the currently selected
-   * locale.
-   */
-  public static final int DISPLAY_SELECTED = 2;
+  public enum DisplayMode {
 
-  private int displayMode = DISPLAY_DEFAULT;
+    /**
+     * Default display mode.
+     * <p>
+     * In this mode, the Locale names are displayed using the default locale's display format.
+     */
+    DEFAULT,
+
+    /**
+     * Selected display mode.
+     * <p>
+     * In this mode, the Locale names are displayed using the formatting of the currently selected
+     * locale.
+     */
+    SELECTED,
+
+    /**
+     * Custom display mode.
+     * <p>
+     * In this mode, the Locale names are displayed using the formatting of the specific locale set
+     * by {@link #setDisplayLocale(Locale)}.
+     */
+    CUSTOM;
+  }
+  private DisplayMode displayMode = DisplayMode.DEFAULT;
   private Locale customDisplayLocale = Locale.getDefault();
 
   /**
@@ -80,29 +90,22 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   /**
    * Sets the display mode of the LocaleComboBox.
-   * <p>
-   * The display mode determines how the Locale names are presented in the combo box:
-   * <ul>
-   * <li>{@link #DISPLAY_DEFAULT} - Uses the default locale's display format to show Locale
-   * names.</li>
-   * <li>{@link #DISPLAY_CUSTOM} - Uses the specific locale (set by
-   * {@link #setDisplayLocale(Locale)}) to format the Locale names.</li>
-   * <li>{@link #DISPLAY_SELECTED} - Uses the currently selected locale to format the Locale
-   * names.</li>
-   * </ul>
    * 
-   * @param displayMode the display mode to use; must be one of {@link #DISPLAY_DEFAULT},
-   *        {@link #DISPLAY_CUSTOM}, or {@link #DISPLAY_SELECTED}.
+   * @param displayMode the display mode to use
+   * 
+   * @see DisplayMode
    */
-  public void setDisplayMode(int displayMode) {
+  public void setDisplayMode(DisplayMode displayMode) {
     this.displayMode = displayMode;
   }
 
   /**
-   * Sets the locale used for formatting Locale names when {@link #DISPLAY_LOCALE} mode is active.
+   * Sets the locale used for formatting Locale names when {@link DisplayMode#CUSTOM} mode is
+   * active.
    * <p>
-   * This locale determines how Locale names are formatted when {@link #DISPLAY_LOCALE} is selected
-   * as the display mode. If the display mode is {@link #DISPLAY_DEFAULT}, this setting is ignored.
+   * This locale determines how Locale names are formatted when {@link DisplayMode#CUSTOM} is
+   * selected as the display mode. If the display mode is any other than {@link DisplayMode#CUSTOM},
+   * this setting is ignored.
    * 
    * @param displayLocale the locale to use for formatting.
    */
@@ -129,10 +132,10 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
     switch (displayMode) {
 
-      case DISPLAY_CUSTOM:
+      case CUSTOM:
         return customDisplayLocale;
 
-      case DISPLAY_SELECTED:
+      case SELECTED:
         return this.getValue() == null ? Locale.getDefault() : this.getValue();
 
       default:
