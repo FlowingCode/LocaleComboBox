@@ -26,6 +26,8 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.data.renderer.LitRenderer;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -80,15 +82,22 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private Locale customDisplayLocale = Locale.getDefault();
 
   /**
-   * Creates a new instance of LocaleComboBox with all the installed locales.
+   * Creates a new instance of LocaleComboBox.
    */
   public LocaleComboBox() {
     setItemLabelGenerator(item -> item.getDisplayName(getLocaleForDisplay()));
     setRenderer(getLocaleRenderer());
     addValueChangeListener(this::onValueChange);
-    setItems(
-        Arrays.stream(Locale.getAvailableLocales()).filter(loc -> loc.getCountry().length() == 2)
-            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName())).toList());
+  }
+
+  /**
+   * Creates a new instance of LocaleComboBox with the desired locales
+   * 
+   * @param locales the {@link Collection} of locales to include in the combobox
+   */
+  public LocaleComboBox(Collection<Locale> items) {
+    this();
+    setItems(items);
   }
 
   /**
