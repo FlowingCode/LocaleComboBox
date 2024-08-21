@@ -27,6 +27,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.data.renderer.LitRenderer;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Vaadin ComboBox extension that allows to choose between multiple locales.
@@ -41,6 +42,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   private static final String ITEM_LAYOUT_CLASS_NAME = "fc-locale-combo-box-item-layout";
   private static final String ITEM_FLAG_CLASS_NAME = "fc-locale-combo-box-item-flag";
+  private static final String DEFAULT_FLAG_CODE = "un";
 
   /**
    * Display mode representing the built-in display modes in LocaleComboBox
@@ -73,6 +75,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
      */
     CUSTOM;
   }
+
   private DisplayMode displayMode = DisplayMode.DEFAULT;
   private Locale customDisplayLocale = Locale.getDefault();
 
@@ -123,7 +126,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
                 </vaadin-horizontal-layout>""")
         .withProperty("layoutClass", loc -> ITEM_LAYOUT_CLASS_NAME)
         .withProperty("flagClass", loc -> ITEM_FLAG_CLASS_NAME)
-        .withProperty("countryCode", loc -> loc.getCountry().toLowerCase())
+        .withProperty("countryCode", this::getFlagCode)
         .withProperty("countryName", loc -> loc.getDisplayCountry(getLocaleForDisplay()))
         .withProperty("displayName", loc -> loc.getDisplayName(getLocaleForDisplay()));
   }
@@ -141,6 +144,16 @@ public class LocaleComboBox extends ComboBox<Locale> {
       default:
         return Locale.getDefault();
     }
+  }
+
+  private String getFlagCode(Locale locale) {
+    String countryCode = locale.getCountry();
+    Optional<String> isoCode = LocaleCountryConverter.convertToISO3166Code(countryCode);
+
+    if (isoCode.isPresent())
+      return isoCode.get().toLowerCase();
+
+    return DEFAULT_FLAG_CODE;
   }
 
   private void onValueChange(ComponentValueChangeEvent<ComboBox<Locale>, Locale> event) {
