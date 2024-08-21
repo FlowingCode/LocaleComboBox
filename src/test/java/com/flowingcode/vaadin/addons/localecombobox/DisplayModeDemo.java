@@ -30,7 +30,7 @@ import java.util.Locale;
 @DemoSource
 @PageTitle("Display modes")
 @SuppressWarnings("serial")
-@Route(value = "demo", layout = LocaleComboBoxDemoView.class)
+@Route(value = "locale-combo-box/display", layout = LocaleComboBoxDemoView.class)
 public class DisplayModeDemo extends BaseLocaleComboBoxDemo {
 
   public DisplayModeDemo() {

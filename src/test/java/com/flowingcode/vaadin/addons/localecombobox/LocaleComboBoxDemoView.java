@@ -33,6 +33,7 @@ public class LocaleComboBoxDemoView extends TabbedDemo {
 
   public LocaleComboBoxDemoView() {
     addDemo(DisplayModeDemo.class);
+    addDemo(RenderingDemo.class);
     setSizeFull();
   }
 }
