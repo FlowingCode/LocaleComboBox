@@ -82,7 +82,12 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private Locale customDisplayLocale = Locale.getDefault();
 
   /**
-   * Creates a new instance of {@code LocaleComboBox}.
+   * Indicates whether the flags should be displayed alongside the locale names.
+   */
+  private Boolean hasFlags = true;
+
+  /**
+   * * Creates a new instance of {@code LocaleComboBox}.
    */
   public LocaleComboBox() {
     setItemLabelGenerator(item -> item.getDisplayName(getLocaleForDisplay()));
@@ -125,6 +130,29 @@ public class LocaleComboBox extends ComboBox<Locale> {
     this.customDisplayLocale = displayLocale == null ? Locale.getDefault() : displayLocale;
   }
 
+  /**
+   * Returns the current flag display status.
+   *
+   * @return {@code true} if flags are displayed alongside the locale names, {@code false} otherwise
+   */
+  public Boolean hasFlags() {
+    return hasFlags;
+  }
+
+  /**
+   * Sets whether flags should be displayed alongside locale names.
+   * <p>
+   * This method updates the internal state to reflect whether flags should be displayed and updates
+   * the rendering based on the new state.
+   * 
+   * @param hasFlags A {@code Boolean} indicating whether flags should be displayed or not.
+   */
+  public void setHasFlags(Boolean hasFlags) {
+    this.hasFlags = hasFlags;
+    this.setRenderer(this.hasFlags ? getLocaleRenderer() : getLocaleRendererWithoutFlags());
+    this.setPrefixFlag(this.hasFlags ? this.getValue() : null);
+  }
+
   private LitRenderer<Locale> getLocaleRenderer() {
     return LitRenderer
         .<Locale>of(
@@ -138,6 +166,14 @@ public class LocaleComboBox extends ComboBox<Locale> {
         .withProperty("countryCode", this::getFlagCode)
         .withProperty("countryName", loc -> loc.getDisplayCountry(getLocaleForDisplay()))
         .withProperty("displayName", loc -> loc.getDisplayName(getLocaleForDisplay()));
+  }
+
+  private LitRenderer<Locale> getLocaleRendererWithoutFlags() {
+    return LitRenderer.<Locale>of("""
+        <vaadin-horizontal-layout class="${item.layoutClass}">
+            <span>${item.displayName}</span>
+        </vaadin-horizontal-layout>""").withProperty("layoutClass", loc -> ITEM_LAYOUT_CLASS_NAME)
+        .withProperty("displayName", loc -> loc.getDisplayName());
   }
 
   private Locale getLocaleForDisplay() {
@@ -162,13 +198,22 @@ public class LocaleComboBox extends ComboBox<Locale> {
   }
 
   private void onValueChange(ComponentValueChangeEvent<ComboBox<Locale>, Locale> event) {
+
+    if (!this.hasFlags)
+      return;
+
     Locale newValue = event.getValue();
-    if (newValue == null) {
+    this.setPrefixFlag(newValue);
+  }
+
+  private void setPrefixFlag(Locale locale) {
+    if (locale == null) {
       setPrefixComponent(null);
       return;
     }
+
     Span flagIcon = new Span();
-    flagIcon.addClassNames("fi", "fi-" + newValue.getCountry().toLowerCase());
+    flagIcon.addClassNames("fi", "fi-" + locale.getCountry().toLowerCase());
     setPrefixComponent(flagIcon);
   }
 
