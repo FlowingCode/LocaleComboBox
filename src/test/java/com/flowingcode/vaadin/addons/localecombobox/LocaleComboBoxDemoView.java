@@ -32,7 +32,7 @@ import com.vaadin.flow.router.Route;
 public class LocaleComboBoxDemoView extends TabbedDemo {
 
   public LocaleComboBoxDemoView() {
-    addDemo(LocaleComboBoxDemo.class);
+    addDemo(DisplayModeDemo.class);
     setSizeFull();
   }
 }

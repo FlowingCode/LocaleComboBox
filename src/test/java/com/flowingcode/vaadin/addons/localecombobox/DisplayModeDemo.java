@@ -37,9 +37,9 @@ import java.util.Locale;
 @PageTitle("Display modes")
 @SuppressWarnings("serial")
 @Route(value = "demo", layout = LocaleComboBoxDemoView.class)
-public class LocaleComboBoxDemo extends Div {
+public class DisplayModeDemo extends Div {
 
-  public LocaleComboBoxDemo() {
+  public DisplayModeDemo() {
 
     List<Locale> localeList =
         Arrays.stream(Locale.getAvailableLocales()).filter(loc -> !loc.getDisplayName().isBlank())
