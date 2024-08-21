@@ -29,6 +29,8 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 @DemoSource
@@ -39,21 +41,27 @@ public class LocaleComboBoxDemo extends Div {
 
   public LocaleComboBoxDemo() {
 
-    LocaleComboBox defaultDisplayLocale = new LocaleComboBox();
+    List<Locale> localeList =
+        Arrays.stream(Locale.getAvailableLocales()).filter(loc -> !loc.getDisplayName().isBlank())
+            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName())).toList();
+    
+    LocaleComboBox defaultDisplayLocale = new LocaleComboBox(localeList);
     LocaleComboBox koreanLocaleCombo = new LocaleComboBox();
-    LocaleComboBox selectedLocaleCombo = new LocaleComboBox();
+    LocaleComboBox selectedLocaleCombo = new LocaleComboBox(localeList);
 
     defaultDisplayLocale.setValue(Locale.ITALY);
-    
+
+    koreanLocaleCombo.setItems(localeList);
     koreanLocaleCombo.setDisplayLocale(Locale.KOREA);
     koreanLocaleCombo.setDisplayMode(LocaleComboBox.DisplayMode.CUSTOM);
     koreanLocaleCombo.setValue(Locale.ITALY);
-    
+
     selectedLocaleCombo.setDisplayMode(LocaleComboBox.DisplayMode.SELECTED);
     selectedLocaleCombo.setValue(Locale.ITALY);
-    
+
     // #if vaadin eq 0
-    add(createHorizontalContainer("Default display mode (uses default locale):", defaultDisplayLocale),
+    add(createHorizontalContainer("Default display mode (uses default locale):",
+        defaultDisplayLocale),
         createHorizontalContainer("Display locales with Korean locale:", koreanLocaleCombo),
         createHorizontalContainer("Display locales with selected locale:", selectedLocaleCombo));
     // #endif
