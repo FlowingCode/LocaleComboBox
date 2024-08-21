@@ -21,12 +21,6 @@
 package com.flowingcode.vaadin.addons.localecombobox;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
-import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import java.util.Arrays;
@@ -37,7 +31,7 @@ import java.util.Locale;
 @PageTitle("Display modes")
 @SuppressWarnings("serial")
 @Route(value = "demo", layout = LocaleComboBoxDemoView.class)
-public class DisplayModeDemo extends Div {
+public class DisplayModeDemo extends BaseLocaleComboBoxDemo {
 
   public DisplayModeDemo() {
 
@@ -69,19 +63,5 @@ public class DisplayModeDemo extends Div {
     // show-source add(koreanLocaleCombo);
     // show-source add(selectedLocaleCombo);
   }
-
-  // #if vaadin eq 0
-  private HorizontalLayout createHorizontalContainer(String title, LocaleComboBox combo) {
-    Span titleSpan = new Span(new Text(title));
-    titleSpan.setWidth("300px");
-    HorizontalLayout container = new HorizontalLayout();
-    container.setWidthFull();
-    container.setAlignItems(Alignment.CENTER);
-    container.setJustifyContentMode(JustifyContentMode.BETWEEN);
-    container.add(titleSpan, combo);
-    container.expand(combo);
-    return container;
-  }
-  // #endif
 
 }
