@@ -19,6 +19,7 @@
  */
 package com.flowingcode.vaadin.addons.localecombobox;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
@@ -37,6 +38,16 @@ public class BaseLocaleComboBoxDemo extends Div {
     container.setAlignItems(Alignment.CENTER);
     container.setJustifyContentMode(JustifyContentMode.BETWEEN);
     container.add(titleSpan, combo);
+    container.expand(combo);
+    return container;
+  }
+  
+  protected HorizontalLayout createHorizontalContainer(Component component, LocaleComboBox combo) {
+    HorizontalLayout container = new HorizontalLayout();
+    container.setWidthFull();
+    container.setAlignItems(Alignment.CENTER);
+    container.setJustifyContentMode(JustifyContentMode.BETWEEN);
+    container.add(component, combo);
     container.expand(combo);
     return container;
   }
