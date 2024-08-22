@@ -173,7 +173,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
         <vaadin-horizontal-layout class="${item.layoutClass}">
             <span>${item.displayName}</span>
         </vaadin-horizontal-layout>""").withProperty("layoutClass", loc -> ITEM_LAYOUT_CLASS_NAME)
-        .withProperty("displayName", loc -> loc.getDisplayName());
+        .withProperty("displayName", loc -> loc.getDisplayName(getLocaleForDisplay()));
   }
 
   private Locale getLocaleForDisplay() {
