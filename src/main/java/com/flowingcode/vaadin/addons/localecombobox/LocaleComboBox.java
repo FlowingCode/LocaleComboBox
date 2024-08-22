@@ -47,7 +47,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private static final String DEFAULT_FLAG_CODE = "un";
 
   /**
-   * Display mode representing the built-in display modes in LocaleComboBox
+   * Display mode representing the built-in display modes in {@link LocaleComboBox}
    * <p>
    * These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
    * built-in display modes.
@@ -82,7 +82,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private Locale customDisplayLocale = Locale.getDefault();
 
   /**
-   * Creates a new instance of LocaleComboBox.
+   * Creates a new instance of {@code LocaleComboBox}.
    */
   public LocaleComboBox() {
     setItemLabelGenerator(item -> item.getDisplayName(getLocaleForDisplay()));
@@ -91,9 +91,9 @@ public class LocaleComboBox extends ComboBox<Locale> {
   }
 
   /**
-   * Creates a new instance of LocaleComboBox with the desired locales
+   * Creates a new instance of {@code LocaleComboBox} with the desired locales
    * 
-   * @param locales the {@link Collection} of locales to include in the combobox
+   * @param locales the {@code Collection} of {@code Locale} to include in the combobox
    */
   public LocaleComboBox(Collection<Locale> items) {
     this();
@@ -119,7 +119,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
    * selected as the display mode. If the display mode is any other than {@link DisplayMode#CUSTOM},
    * this setting is ignored.
    * 
-   * @param displayLocale the locale to use for formatting.
+   * @param displayLocale the {@code Locale} to use for formatting.
    */
   public void setDisplayLocale(Locale displayLocale) {
     this.customDisplayLocale = displayLocale == null ? Locale.getDefault() : displayLocale;
