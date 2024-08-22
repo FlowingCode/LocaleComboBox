@@ -157,12 +157,8 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   private String getFlagCode(Locale locale) {
     String countryCode = locale.getCountry();
-    Optional<String> isoCode = LocaleCountryConverter.convertToISO3166Code(countryCode);
-
-    if (isoCode.isPresent())
-      return isoCode.get().toLowerCase();
-
-    return DEFAULT_FLAG_CODE;
+    return LocaleCountryConverter.convertToISO3166Code(countryCode).map(String::toLowerCase)
+        .orElse(DEFAULT_FLAG_CODE);
   }
 
   private void onValueChange(ComponentValueChangeEvent<ComboBox<Locale>, Locale> event) {
