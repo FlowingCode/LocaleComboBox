@@ -52,7 +52,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
    * These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
    * built-in display modes.
    */
-  public enum DisplayMode {
+  public enum DisplayMode { 
 
     /**
      * Default display mode.
@@ -84,7 +84,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   /**
    * Indicates whether the flags should be displayed alongside the locale names.
    */
-  private Boolean hasFlags = true;
+  private boolean hasFlags = true;
 
   /**
    * * Creates a new instance of {@code LocaleComboBox}.
@@ -135,7 +135,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
    *
    * @return {@code true} if flags are displayed alongside the locale names, {@code false} otherwise
    */
-  public Boolean hasFlags() {
+  public boolean hasFlags() {
     return hasFlags;
   }
 
@@ -145,9 +145,9 @@ public class LocaleComboBox extends ComboBox<Locale> {
    * This method updates the internal state to reflect whether flags should be displayed and updates
    * the rendering based on the new state.
    * 
-   * @param hasFlags A {@code Boolean} indicating whether flags should be displayed or not.
+   * @param hasFlags A {@code boolean} indicating whether flags should be displayed or not.
    */
-  public void setHasFlags(Boolean hasFlags) {
+  public void setHasFlags(boolean hasFlags) {
     this.hasFlags = hasFlags;
     this.setRenderer(this.hasFlags ? getLocaleRenderer() : getLocaleRendererWithoutFlags());
     this.setPrefixFlag(this.hasFlags ? this.getValue() : null);
