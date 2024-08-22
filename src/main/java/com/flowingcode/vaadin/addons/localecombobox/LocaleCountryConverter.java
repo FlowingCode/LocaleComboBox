@@ -105,7 +105,7 @@ public class LocaleCountryConverter {
    * @param countryCode The country code to be converted. This can be in ISO 3166-1 alpha-2 format
    *        (e.g., "AR"), ISO 3166-1 alpha-3 format (e.g., "ARG"), or numeric-3 format (e.g.,
    *        "032").
-   * @return An {@link Optional} containing the ISO 3166-1 alpha-2 code if the conversion is
+   * @return An {@code Optional} containing the ISO 3166-1 alpha-2 code if the conversion is
    *         successful.
    */
   public static Optional<String> convertToISO3166Code(String countryCode) {
