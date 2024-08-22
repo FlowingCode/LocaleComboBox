@@ -43,61 +43,265 @@ import java.util.Optional;
  */
 public class LocaleCountryConverter {
 
-  private static final int TOTAL_COUNTRIES = 249;
-  private static final List<String> alpha2codes =
-      List.of("AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT",
-          "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BQ", "BA", "BW",
-          "BV", "BR", "IO", "BN", "BG", "BF", "BI", "CV", "KH", "CM", "CA", "KY", "CF", "TD", "CL",
-          "CN", "CX", "CC", "CO", "KM", "CD", "CG", "CK", "CR", "HR", "CU", "CW", "CY", "CZ", "CI",
-          "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FK", "FO", "FJ",
-          "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP",
-          "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID",
-          "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KP", "KR",
-          "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MG", "MW", "MY",
-          "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS",
-          "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MK",
-          "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR",
-          "QA", "RO", "RU", "RW", "RE", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST",
-          "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "SS", "ES",
-          "LK", "SD", "SR", "SJ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO",
-          "TT", "TN", "TM", "TC", "TV", "TR", "UG", "UA", "AE", "GB", "UM", "US", "UY", "UZ", "VU",
-          "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW", "AX");
-  private static final List<String> alpha3codes = List.of("AFG", "ALB", "DZA", "ASM", "AND", "AGO",
-      "AIA", "ATA", "ATG", "ARG", "ARM", "ABW", "AUS", "AUT", "AZE", "BHS", "BHR", "BGD", "BRB",
-      "BLR", "BEL", "BLZ", "BEN", "BMU", "BTN", "BOL", "BES", "BIH", "BWA", "BVT", "BRA", "IOT",
-      "BRN", "BGR", "BFA", "BDI", "CPV", "KHM", "CMR", "CAN", "CYM", "CAF", "TCD", "CHL", "CHN",
-      "CXR", "CCK", "COL", "COM", "COD", "COG", "COK", "CRI", "HRV", "CUB", "CUW", "CYP", "CZE",
-      "CIV", "DNK", "DJI", "DMA", "DOM", "ECU", "EGY", "SLV", "GNQ", "ERI", "EST", "SWZ", "ETH",
-      "FLK", "FRO", "FJI", "FIN", "FRA", "GUF", "PYF", "ATF", "GAB", "GMB", "GEO", "DEU", "GHA",
-      "GIB", "GRC", "GRL", "GRD", "GLP", "GUM", "GTM", "GGY", "GIN", "GNB", "GUY", "HTI", "HMD",
-      "VAT", "HND", "HKG", "HUN", "ISL", "IND", "IDN", "IRN", "IRQ", "IRL", "IMN", "ISR", "ITA",
-      "JAM", "JPN", "JEY", "JOR", "KAZ", "KEN", "KIR", "PRK", "KOR", "KWT", "KGZ", "LAO", "LVA",
-      "LBN", "LSO", "LBR", "LBY", "LIE", "LTU", "LUX", "MAC", "MDG", "MWI", "MYS", "MDV", "MLI",
-      "MLT", "MHL", "MTQ", "MRT", "MUS", "MYT", "MEX", "FSM", "MDA", "MCO", "MNG", "MNE", "MSR",
-      "MAR", "MOZ", "MMR", "NAM", "NRU", "NPL", "NLD", "NCL", "NZL", "NIC", "NER", "NGA", "NIU",
-      "NFK", "MKD", "MNP", "NOR", "OMN", "PAK", "PLW", "PSE", "PAN", "PNG", "PRY", "PER", "PHL",
-      "PCN", "POL", "PRT", "PRI", "QAT", "ROU", "RUS", "RWA", "REU", "BLM", "SHN", "KNA", "LCA",
-      "MAF", "SPM", "VCT", "WSM", "SMR", "STP", "SAU", "SEN", "SRB", "SYC", "SLE", "SGP", "SXM",
-      "SVK", "SVN", "SLB", "SOM", "ZAF", "SGS", "SSD", "ESP", "LKA", "SDN", "SUR", "SJM", "SWE",
-      "CHE", "SYR", "TWN", "TJK", "TZA", "THA", "TLS", "TGO", "TKL", "TON", "TTO", "TUN", "TKM",
-      "TCA", "TUV", "TUR", "UGA", "UKR", "ARE", "GBR", "UMI", "USA", "URY", "UZB", "VUT", "VEN",
-      "VNM", "VGB", "VIR", "WLF", "ESH", "YEM", "ZMB", "ZWE", "ALA");
-  private static final List<Integer> numericCodes = List.of(4, 8, 12, 16, 20, 24, 660, 10, 28, 32,
-      51, 533, 36, 40, 31, 44, 48, 50, 52, 112, 56, 84, 204, 60, 64, 68, 535, 70, 72, 74, 76, 86,
-      96, 100, 854, 108, 132, 116, 120, 124, 136, 140, 148, 152, 156, 162, 166, 170, 174, 180, 178,
-      184, 188, 191, 192, 531, 196, 203, 384, 208, 262, 212, 214, 218, 818, 222, 226, 232, 233, 748,
-      231, 238, 234, 242, 246, 250, 254, 258, 260, 266, 270, 268, 276, 288, 292, 300, 304, 308, 312,
-      316, 320, 831, 324, 624, 328, 332, 334, 336, 340, 344, 348, 352, 356, 360, 364, 368, 372, 833,
-      376, 380, 388, 392, 832, 400, 398, 404, 296, 408, 410, 414, 417, 418, 428, 422, 426, 430, 434,
-      438, 440, 442, 446, 450, 454, 458, 462, 466, 470, 584, 474, 478, 480, 175, 484, 583, 498, 492,
-      496, 499, 500, 504, 508, 104, 516, 520, 524, 528, 540, 554, 558, 562, 566, 570, 574, 807, 580,
-      578, 512, 586, 585, 275, 591, 598, 600, 604, 608, 612, 616, 620, 630, 634, 642, 643, 646, 638,
-      652, 654, 659, 662, 663, 666, 670, 882, 674, 678, 682, 686, 688, 690, 694, 702, 534, 703, 705,
-      90, 706, 710, 239, 728, 724, 144, 729, 740, 744, 752, 756, 760, 158, 762, 834, 764, 626, 768,
-      772, 776, 780, 788, 795, 796, 798, 792, 800, 804, 784, 826, 581, 840, 858, 860, 548, 862, 704,
-      92, 850, 876, 732, 887, 894, 716, 248);
+  private static final Map<String, String> conversions = new HashMap<>();
 
-  private static final Map<String, String> conversions = getConversionsMap();
+  private static void add(String alpha2, String alpha3, int numeric) {
+    conversions.put(alpha2, alpha2);
+    conversions.put(alpha3, alpha2);
+    conversions.put(Integer.toString(numeric), alpha2);
+  }
+
+  static {
+    add("AF", "AFG", 4);
+    add("AL", "ALB", 8);
+    add("DZ", "DZA", 12);
+    add("AS", "ASM", 16);
+    add("AD", "AND", 20);
+    add("AO", "AGO", 24);
+    add("AI", "AIA", 660);
+    add("AQ", "ATA", 10);
+    add("AG", "ATG", 28);
+    add("AR", "ARG", 32);
+    add("AM", "ARM", 51);
+    add("AW", "ABW", 533);
+    add("AU", "AUS", 36);
+    add("AT", "AUT", 40);
+    add("AZ", "AZE", 31);
+    add("BS", "BHS", 44);
+    add("BH", "BHR", 48);
+    add("BD", "BGD", 50);
+    add("BB", "BRB", 52);
+    add("BY", "BLR", 112);
+    add("BE", "BEL", 56);
+    add("BZ", "BLZ", 84);
+    add("BJ", "BEN", 204);
+    add("BM", "BMU", 60);
+    add("BT", "BTN", 64);
+    add("BO", "BOL", 68);
+    add("BQ", "BES", 535);
+    add("BA", "BIH", 70);
+    add("BW", "BWA", 72);
+    add("BV", "BVT", 74);
+    add("BR", "BRA", 76);
+    add("IO", "IOT", 86);
+    add("BN", "BRN", 96);
+    add("BG", "BGR", 100);
+    add("BF", "BFA", 854);
+    add("BI", "BDI", 108);
+    add("CV", "CPV", 132);
+    add("KH", "KHM", 116);
+    add("CM", "CMR", 120);
+    add("CA", "CAN", 124);
+    add("KY", "CYM", 136);
+    add("CF", "CAF", 140);
+    add("TD", "TCD", 148);
+    add("CL", "CHL", 152);
+    add("CN", "CHN", 156);
+    add("CX", "CXR", 162);
+    add("CC", "CCK", 166);
+    add("CO", "COL", 170);
+    add("KM", "COM", 174);
+    add("CD", "COD", 180);
+    add("CG", "COG", 178);
+    add("CK", "COK", 184);
+    add("CR", "CRI", 188);
+    add("HR", "HRV", 191);
+    add("CU", "CUB", 192);
+    add("CW", "CUW", 531);
+    add("CY", "CYP", 196);
+    add("CZ", "CZE", 203);
+    add("CI", "CIV", 384);
+    add("DK", "DNK", 208);
+    add("DJ", "DJI", 262);
+    add("DM", "DMA", 212);
+    add("DO", "DOM", 214);
+    add("EC", "ECU", 218);
+    add("EG", "EGY", 818);
+    add("SV", "SLV", 222);
+    add("GQ", "GNQ", 226);
+    add("ER", "ERI", 232);
+    add("EE", "EST", 233);
+    add("SZ", "SWZ", 748);
+    add("ET", "ETH", 231);
+    add("FK", "FLK", 238);
+    add("FO", "FRO", 234);
+    add("FJ", "FJI", 242);
+    add("FI", "FIN", 246);
+    add("FR", "FRA", 250);
+    add("GF", "GUF", 254);
+    add("PF", "PYF", 258);
+    add("TF", "ATF", 260);
+    add("GA", "GAB", 266);
+    add("GM", "GMB", 270);
+    add("GE", "GEO", 268);
+    add("DE", "DEU", 276);
+    add("GH", "GHA", 288);
+    add("GI", "GIB", 292);
+    add("GR", "GRC", 300);
+    add("GL", "GRL", 304);
+    add("GD", "GRD", 308);
+    add("GP", "GLP", 312);
+    add("GU", "GUM", 316);
+    add("GT", "GTM", 320);
+    add("GG", "GGY", 831);
+    add("GN", "GIN", 324);
+    add("GW", "GNB", 624);
+    add("GY", "GUY", 328);
+    add("HT", "HTI", 332);
+    add("HM", "HMD", 334);
+    add("VA", "VAT", 336);
+    add("HN", "HND", 340);
+    add("HK", "HKG", 344);
+    add("HU", "HUN", 348);
+    add("IS", "ISL", 352);
+    add("IN", "IND", 356);
+    add("ID", "IDN", 360);
+    add("IR", "IRN", 364);
+    add("IQ", "IRQ", 368);
+    add("IE", "IRL", 372);
+    add("IM", "IMN", 833);
+    add("IL", "ISR", 376);
+    add("IT", "ITA", 380);
+    add("JM", "JAM", 388);
+    add("JP", "JPN", 392);
+    add("JE", "JEY", 832);
+    add("JO", "JOR", 400);
+    add("KZ", "KAZ", 398);
+    add("KE", "KEN", 404);
+    add("KI", "KIR", 296);
+    add("KP", "PRK", 408);
+    add("KR", "KOR", 410);
+    add("KW", "KWT", 414);
+    add("KG", "KGZ", 417);
+    add("LA", "LAO", 418);
+    add("LV", "LVA", 428);
+    add("LB", "LBN", 422);
+    add("LS", "LSO", 426);
+    add("LR", "LBR", 430);
+    add("LY", "LBY", 434);
+    add("LI", "LIE", 438);
+    add("LT", "LTU", 440);
+    add("LU", "LUX", 442);
+    add("MO", "MAC", 446);
+    add("MG", "MDG", 450);
+    add("MW", "MWI", 454);
+    add("MY", "MYS", 458);
+    add("MV", "MDV", 462);
+    add("ML", "MLI", 466);
+    add("MT", "MLT", 470);
+    add("MH", "MHL", 584);
+    add("MQ", "MTQ", 474);
+    add("MR", "MRT", 478);
+    add("MU", "MUS", 480);
+    add("YT", "MYT", 175);
+    add("MX", "MEX", 484);
+    add("FM", "FSM", 583);
+    add("MD", "MDA", 498);
+    add("MC", "MCO", 492);
+    add("MN", "MNG", 496);
+    add("ME", "MNE", 499);
+    add("MS", "MSR", 500);
+    add("MA", "MAR", 504);
+    add("MZ", "MOZ", 508);
+    add("MM", "MMR", 104);
+    add("NA", "NAM", 516);
+    add("NR", "NRU", 520);
+    add("NP", "NPL", 524);
+    add("NL", "NLD", 528);
+    add("NC", "NCL", 540);
+    add("NZ", "NZL", 554);
+    add("NI", "NIC", 558);
+    add("NE", "NER", 562);
+    add("NG", "NGA", 566);
+    add("NU", "NIU", 570);
+    add("NF", "NFK", 574);
+    add("MK", "MKD", 807);
+    add("MP", "MNP", 580);
+    add("NO", "NOR", 578);
+    add("OM", "OMN", 512);
+    add("PK", "PAK", 586);
+    add("PW", "PLW", 585);
+    add("PS", "PSE", 275);
+    add("PA", "PAN", 591);
+    add("PG", "PNG", 598);
+    add("PY", "PRY", 600);
+    add("PE", "PER", 604);
+    add("PH", "PHL", 608);
+    add("PN", "PCN", 612);
+    add("PL", "POL", 616);
+    add("PT", "PRT", 620);
+    add("PR", "PRI", 630);
+    add("QA", "QAT", 634);
+    add("RO", "ROU", 642);
+    add("RU", "RUS", 643);
+    add("RW", "RWA", 646);
+    add("RE", "REU", 638);
+    add("BL", "BLM", 652);
+    add("SH", "SHN", 654);
+    add("KN", "KNA", 659);
+    add("LC", "LCA", 662);
+    add("MF", "MAF", 663);
+    add("PM", "SPM", 666);
+    add("VC", "VCT", 670);
+    add("WS", "WSM", 882);
+    add("SM", "SMR", 674);
+    add("ST", "STP", 678);
+    add("SA", "SAU", 682);
+    add("SN", "SEN", 686);
+    add("RS", "SRB", 688);
+    add("SC", "SYC", 690);
+    add("SL", "SLE", 694);
+    add("SG", "SGP", 702);
+    add("SX", "SXM", 534);
+    add("SK", "SVK", 703);
+    add("SI", "SVN", 705);
+    add("SB", "SLB", 90);
+    add("SO", "SOM", 706);
+    add("ZA", "ZAF", 710);
+    add("GS", "SGS", 239);
+    add("SS", "SSD", 728);
+    add("ES", "ESP", 724);
+    add("LK", "LKA", 144);
+    add("SD", "SDN", 729);
+    add("SR", "SUR", 740);
+    add("SJ", "SJM", 744);
+    add("SE", "SWE", 752);
+    add("CH", "CHE", 756);
+    add("SY", "SYR", 760);
+    add("TW", "TWN", 158);
+    add("TJ", "TJK", 762);
+    add("TZ", "TZA", 834);
+    add("TH", "THA", 764);
+    add("TL", "TLS", 626);
+    add("TG", "TGO", 768);
+    add("TK", "TKL", 772);
+    add("TO", "TON", 776);
+    add("TT", "TTO", 780);
+    add("TN", "TUN", 788);
+    add("TM", "TKM", 795);
+    add("TC", "TCA", 796);
+    add("TV", "TUV", 798);
+    add("TR", "TUR", 792);
+    add("UG", "UGA", 800);
+    add("UA", "UKR", 804);
+    add("AE", "ARE", 784);
+    add("GB", "GBR", 826);
+    add("UM", "UMI", 581);
+    add("US", "USA", 840);
+    add("UY", "URY", 858);
+    add("UZ", "UZB", 860);
+    add("VU", "VUT", 548);
+    add("VE", "VEN", 862);
+    add("VN", "VNM", 704);
+    add("VG", "VGB", 92);
+    add("VI", "VIR", 850);
+    add("WF", "WLF", 876);
+    add("EH", "ESH", 732);
+    add("YE", "YEM", 887);
+    add("ZM", "ZMB", 894);
+    add("ZW", "ZWE", 716);
+    add("AX", "ALA", 248);
+  }
 
   /**
    * Converts a country code to its corresponding ISO 3166-1 alpha-2 code.
@@ -110,19 +314,6 @@ public class LocaleCountryConverter {
    */
   public static Optional<String> convertToISO3166Code(String countryCode) {
     return Optional.ofNullable(conversions.get(countryCode.toUpperCase()));
-  }
-
-  private static Map<String, String> getConversionsMap() {
-    var conversions = new HashMap<String, String>();
-
-    for (int i = 0; i < TOTAL_COUNTRIES; i++) {
-      String alpha2 = alpha2codes.get(i);
-      conversions.put(alpha2, alpha2);
-      conversions.put(alpha3codes.get(i), alpha2);
-      conversions.put(numericCodes.get(i).toString(), alpha2);
-    }
-
-    return conversions;
   }
 
 }
