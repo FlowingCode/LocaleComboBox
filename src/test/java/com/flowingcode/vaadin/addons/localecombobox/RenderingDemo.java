@@ -23,6 +23,8 @@ import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 @DemoSource
@@ -32,8 +34,12 @@ import java.util.Locale;
 public class RenderingDemo extends BaseLocaleComboBoxDemo {
   public RenderingDemo() {
 
-    LocaleComboBox defaultLocaleCombo = new LocaleComboBox();
-    LocaleComboBox flagsLocaleCombo = new LocaleComboBox();
+    List<Locale> localeList =
+        Arrays.stream(Locale.getAvailableLocales()).filter(loc -> !loc.getDisplayName().isBlank())
+            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName())).toList();
+
+    LocaleComboBox defaultLocaleCombo = new LocaleComboBox(localeList);
+    LocaleComboBox flagsLocaleCombo = new LocaleComboBox(localeList);
     Checkbox checkbox = new Checkbox("Render flags");
 
     defaultLocaleCombo.setValue(Locale.ITALY);
