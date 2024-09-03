@@ -33,13 +33,7 @@ public class BaseLocaleComboBoxDemo extends Div {
   protected HorizontalLayout createHorizontalContainer(String title, LocaleComboBox combo) {
     Span titleSpan = new Span(new Text(title));
     titleSpan.setWidth("300px");
-    HorizontalLayout container = new HorizontalLayout();
-    container.setWidthFull();
-    container.setAlignItems(Alignment.CENTER);
-    container.setJustifyContentMode(JustifyContentMode.BETWEEN);
-    container.add(titleSpan, combo);
-    container.expand(combo);
-    return container;
+    return createHorizontalContainer(titleSpan, combo);
   }
 
   protected HorizontalLayout createHorizontalContainer(Component component, LocaleComboBox combo) {
