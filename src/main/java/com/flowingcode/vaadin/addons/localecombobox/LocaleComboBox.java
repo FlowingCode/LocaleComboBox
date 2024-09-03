@@ -25,11 +25,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.data.renderer.LitRenderer;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 /**
  * Vaadin ComboBox extension that allows to choose between multiple locales.
