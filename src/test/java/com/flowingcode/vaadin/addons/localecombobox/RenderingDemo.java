@@ -35,11 +35,11 @@ public class RenderingDemo extends BaseLocaleComboBoxDemo {
     LocaleComboBox defaultLocaleCombo = new LocaleComboBox();
     LocaleComboBox flagsLocaleCombo = new LocaleComboBox();
     Checkbox checkbox = new Checkbox("Render flags");
-    
+
     defaultLocaleCombo.setValue(Locale.ITALY);
     flagsLocaleCombo.setValue(Locale.ITALY);
     checkbox.setValue(true);
-    
+
     /*
      * You can choose whether the flags should be displayed alongside the locale names by using the
      * setHasFlag method
