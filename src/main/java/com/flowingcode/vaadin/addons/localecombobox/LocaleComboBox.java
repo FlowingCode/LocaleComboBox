@@ -52,7 +52,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
    * These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
    * built-in display modes.
    */
-  public enum DisplayMode { 
+  public enum DisplayMode {
 
     /**
      * Default display mode.
@@ -199,8 +199,9 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   private void onValueChange(ComponentValueChangeEvent<ComboBox<Locale>, Locale> event) {
 
-    if (!this.hasFlags)
+    if (!this.hasFlags) {
       return;
+    }
 
     Locale newValue = event.getValue();
     this.setPrefixFlag(newValue);
