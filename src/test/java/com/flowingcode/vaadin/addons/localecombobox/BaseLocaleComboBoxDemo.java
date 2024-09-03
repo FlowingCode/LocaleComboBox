@@ -41,7 +41,7 @@ public class BaseLocaleComboBoxDemo extends Div {
     container.expand(combo);
     return container;
   }
-  
+
   protected HorizontalLayout createHorizontalContainer(Component component, LocaleComboBox combo) {
     HorizontalLayout container = new HorizontalLayout();
     container.setWidthFull();
