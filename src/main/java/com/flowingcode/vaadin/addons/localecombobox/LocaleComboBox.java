@@ -211,7 +211,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
     }
 
     Span flagIcon = new Span();
-    flagIcon.addClassNames("fi", "fi-" + locale.getCountry().toLowerCase());
+    flagIcon.addClassNames("fi", "fi-" + this.getFlagCode(locale));
     setPrefixComponent(flagIcon);
   }
 
