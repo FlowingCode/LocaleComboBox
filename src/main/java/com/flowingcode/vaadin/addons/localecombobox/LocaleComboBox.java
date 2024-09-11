@@ -27,6 +27,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.data.renderer.LitRenderer;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Vaadin ComboBox extension that allows to choose between multiple locales.
@@ -76,7 +77,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   }
 
   private DisplayMode displayMode = DisplayMode.DEFAULT;
-  private Locale customDisplayLocale = Locale.getDefault();
+  private Locale customDisplayLocale;
 
   /**
    * Indicates whether the flags should be displayed alongside the locale names.
@@ -124,7 +125,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
    * @param displayLocale the {@code Locale} to use for formatting.
    */
   public void setDisplayLocale(Locale displayLocale) {
-    this.customDisplayLocale = displayLocale == null ? Locale.getDefault() : displayLocale;
+    this.customDisplayLocale = displayLocale;
   }
 
   /**
@@ -178,13 +179,13 @@ public class LocaleComboBox extends ComboBox<Locale> {
     switch (displayMode) {
 
       case CUSTOM:
-        return customDisplayLocale;
+        return Optional.ofNullable(customDisplayLocale).orElseGet(this::getLocale);
 
       case SELECTED:
-        return this.getValue() == null ? Locale.getDefault() : this.getValue();
+        return Optional.ofNullable(this.getValue()).orElseGet(this::getLocale);
 
       default:
-        return Locale.getDefault();
+        return this.getLocale();
     }
   }
 
