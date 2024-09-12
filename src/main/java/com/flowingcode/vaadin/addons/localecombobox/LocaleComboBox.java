@@ -98,9 +98,9 @@ public class LocaleComboBox extends ComboBox<Locale> {
    * 
    * @param locales the {@code Collection} of {@code Locale} to include in the combobox
    */
-  public LocaleComboBox(Collection<Locale> items) {
+  public LocaleComboBox(Collection<Locale> locales) {
     this();
-    setItems(items);
+    setItems(locales);
   }
 
   /**
