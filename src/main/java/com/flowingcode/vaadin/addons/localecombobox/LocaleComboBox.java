@@ -45,7 +45,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private static final String DEFAULT_FLAG_CODE = "un";
 
   /**
-   * Display mode representing the built-in display modes in {@link LocaleComboBox}
+   * Represents the built-in display modes for locale names in the {@link LocaleComboBox} component.
    * <p>
    * These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
    * built-in display modes.
@@ -85,7 +85,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private boolean hasFlags = true;
 
   /**
-   * * Creates a new instance of {@code LocaleComboBox}.
+   * Creates a new instance of {@code LocaleComboBox}.
    */
   public LocaleComboBox() {
     setItemLabelGenerator(item -> item.getDisplayName(getLocaleForDisplay()));
