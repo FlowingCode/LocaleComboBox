@@ -37,7 +37,7 @@ import java.util.Optional;
 @SuppressWarnings("serial")
 @NpmPackage(value = "flag-icons", version = "7.2.3")
 @CssImport("flag-icons/css/flag-icons.min.css")
-@CssImport("styles/locale-combo-box.css")
+@CssImport("./styles/locale-combo-box.css")
 public class LocaleComboBox extends ComboBox<Locale> {
 
   private static final String ITEM_LAYOUT_CLASS_NAME = "fc-locale-combo-box-item-layout";
