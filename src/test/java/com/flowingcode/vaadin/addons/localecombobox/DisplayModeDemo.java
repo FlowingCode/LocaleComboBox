@@ -36,8 +36,10 @@ public class DisplayModeDemo extends BaseLocaleComboBoxDemo {
   public DisplayModeDemo() {
 
     List<Locale> localeList =
-        Arrays.stream(Locale.getAvailableLocales()).filter(loc -> !loc.getDisplayName().isBlank())
-            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName())).toList();
+        Arrays.stream(Locale.getAvailableLocales())
+            .filter(loc -> !loc.getDisplayName().isBlank())
+            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName()))
+            .toList();
 
     LocaleComboBox defaultDisplayLocale = new LocaleComboBox(localeList);
     LocaleComboBox koreanLocaleCombo = new LocaleComboBox();
@@ -63,5 +65,4 @@ public class DisplayModeDemo extends BaseLocaleComboBoxDemo {
     // show-source add(koreanLocaleCombo);
     // show-source add(selectedLocaleCombo);
   }
-
 }

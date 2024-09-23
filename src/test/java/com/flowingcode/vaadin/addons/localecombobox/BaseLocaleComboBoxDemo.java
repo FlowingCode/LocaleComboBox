@@ -23,9 +23,9 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 @SuppressWarnings("serial")
 public class BaseLocaleComboBoxDemo extends Div {
@@ -45,5 +45,4 @@ public class BaseLocaleComboBoxDemo extends Div {
     container.expand(combo);
     return container;
   }
-
 }

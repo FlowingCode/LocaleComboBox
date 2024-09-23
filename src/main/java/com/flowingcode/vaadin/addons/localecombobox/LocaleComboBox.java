@@ -31,7 +31,7 @@ import java.util.Optional;
 
 /**
  * Vaadin ComboBox extension that allows to choose between multiple locales.
- * 
+ *
  * @author Tomas Peiretti / Flowing Code
  */
 @SuppressWarnings("serial")
@@ -46,32 +46,32 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   /**
    * Represents the built-in display modes for locale names in the {@link LocaleComboBox} component.
-   * <p>
-   * These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
+   *
+   * <p>These enums can be used in {@link #setDisplayMode(DisplayMode)} to easily switch between the
    * built-in display modes.
    */
   public enum DisplayMode {
 
     /**
      * Default display mode.
-     * <p>
-     * In this mode, the Locale names are displayed using the default locale's display format.
+     *
+     * <p>In this mode, the Locale names are displayed using the default locale's display format.
      */
     DEFAULT,
 
     /**
      * Selected display mode.
-     * <p>
-     * In this mode, the Locale names are displayed using the formatting of the currently selected
-     * locale.
+     *
+     * <p>In this mode, the Locale names are displayed using the formatting of the currently
+     * selected locale.
      */
     SELECTED,
 
     /**
      * Custom display mode.
-     * <p>
-     * In this mode, the Locale names are displayed using the formatting of the specific locale set
-     * by {@link #setDisplayLocale(Locale)}.
+     *
+     * <p>In this mode, the Locale names are displayed using the formatting of the specific locale
+     * set by {@link #setDisplayLocale(Locale)}.
      */
     CUSTOM;
   }
@@ -79,14 +79,10 @@ public class LocaleComboBox extends ComboBox<Locale> {
   private DisplayMode displayMode = DisplayMode.DEFAULT;
   private Locale customDisplayLocale;
 
-  /**
-   * Indicates whether the flags should be displayed alongside the locale names.
-   */
+  /** Indicates whether the flags should be displayed alongside the locale names. */
   private boolean hasFlags = true;
 
-  /**
-   * Creates a new instance of {@code LocaleComboBox}.
-   */
+  /** Creates a new instance of {@code LocaleComboBox}. */
   public LocaleComboBox() {
     setItemLabelGenerator(item -> item.getDisplayName(getLocaleForDisplay()));
     setRenderer(getLocaleRenderer());
@@ -95,7 +91,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   /**
    * Creates a new instance of {@code LocaleComboBox} with the desired locales
-   * 
+   *
    * @param locales the {@code Collection} of {@code Locale} to include in the combobox
    */
   public LocaleComboBox(Collection<Locale> locales) {
@@ -105,9 +101,8 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   /**
    * Sets the display mode of the LocaleComboBox.
-   * 
+   *
    * @param displayMode the display mode to use
-   * 
    * @see DisplayMode
    */
   public void setDisplayMode(DisplayMode displayMode) {
@@ -117,11 +112,11 @@ public class LocaleComboBox extends ComboBox<Locale> {
   /**
    * Sets the locale used for formatting Locale names when {@link DisplayMode#CUSTOM} mode is
    * active.
-   * <p>
-   * This locale determines how Locale names are formatted when {@link DisplayMode#CUSTOM} is
+   *
+   * <p>This locale determines how Locale names are formatted when {@link DisplayMode#CUSTOM} is
    * selected as the display mode. If the display mode is any other than {@link DisplayMode#CUSTOM},
    * this setting is ignored.
-   * 
+   *
    * @param displayLocale the {@code Locale} to use for formatting.
    */
   public void setDisplayLocale(Locale displayLocale) {
@@ -139,10 +134,10 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   /**
    * Sets whether flags should be displayed alongside locale names.
-   * <p>
-   * This method updates the internal state to reflect whether flags should be displayed and updates
-   * the rendering based on the new state.
-   * 
+   *
+   * <p>This method updates the internal state to reflect whether flags should be displayed and
+   * updates the rendering based on the new state.
+   *
    * @param hasFlags A {@code boolean} indicating whether flags should be displayed or not.
    */
   public void setHasFlags(boolean hasFlags) {
@@ -152,8 +147,7 @@ public class LocaleComboBox extends ComboBox<Locale> {
   }
 
   private LitRenderer<Locale> getLocaleRenderer() {
-    return LitRenderer
-        .<Locale>of(
+    return LitRenderer.<Locale>of(
             """
                 <vaadin-horizontal-layout class="${item.layoutClass}">
                     <span class="fi fi-${item.countryCode} ${item.flagClass} alt="${item.countryName}'s flag"></span>
@@ -167,17 +161,18 @@ public class LocaleComboBox extends ComboBox<Locale> {
   }
 
   private LitRenderer<Locale> getLocaleRendererWithoutFlags() {
-    return LitRenderer.<Locale>of("""
+    return LitRenderer.<Locale>of(
+            """
         <vaadin-horizontal-layout class="${item.layoutClass}">
             <span>${item.displayName}</span>
-        </vaadin-horizontal-layout>""").withProperty("layoutClass", loc -> ITEM_LAYOUT_CLASS_NAME)
+        </vaadin-horizontal-layout>""")
+        .withProperty("layoutClass", loc -> ITEM_LAYOUT_CLASS_NAME)
         .withProperty("displayName", loc -> loc.getDisplayName(getLocaleForDisplay()));
   }
 
   private Locale getLocaleForDisplay() {
 
     switch (displayMode) {
-
       case CUSTOM:
         return Optional.ofNullable(customDisplayLocale).orElseGet(this::getLocale);
 
@@ -191,7 +186,8 @@ public class LocaleComboBox extends ComboBox<Locale> {
 
   private String getFlagCode(Locale locale) {
     String countryCode = locale.getCountry();
-    return LocaleCountryConverter.convertToISO3166Code(countryCode).map(String::toLowerCase)
+    return LocaleCountryConverter.convertToISO3166Code(countryCode)
+        .map(String::toLowerCase)
         .orElse(DEFAULT_FLAG_CODE);
   }
 
@@ -215,5 +211,4 @@ public class LocaleComboBox extends ComboBox<Locale> {
     flagIcon.addClassNames("fi", "fi-" + this.getFlagCode(locale));
     setPrefixComponent(flagIcon);
   }
-
 }

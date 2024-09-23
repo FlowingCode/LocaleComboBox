@@ -35,8 +35,10 @@ public class RenderingDemo extends BaseLocaleComboBoxDemo {
   public RenderingDemo() {
 
     List<Locale> localeList =
-        Arrays.stream(Locale.getAvailableLocales()).filter(loc -> !loc.getDisplayName().isBlank())
-            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName())).toList();
+        Arrays.stream(Locale.getAvailableLocales())
+            .filter(loc -> !loc.getDisplayName().isBlank())
+            .sorted((l1, l2) -> l1.getDisplayName().compareTo(l2.getDisplayName()))
+            .toList();
 
     LocaleComboBox defaultLocaleCombo = new LocaleComboBox(localeList);
     LocaleComboBox flagsLocaleCombo = new LocaleComboBox(localeList);

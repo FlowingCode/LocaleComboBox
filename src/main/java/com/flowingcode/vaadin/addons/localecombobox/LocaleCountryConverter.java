@@ -20,15 +20,13 @@
 package com.flowingcode.vaadin.addons.localecombobox;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 /**
  * Utility class for converting between different formats of country codes.
  *
- * <p>
- * The {@code LocaleCountryConverter} class provides methods to convert country codes from ISO
+ * <p>The {@code LocaleCountryConverter} class provides methods to convert country codes from ISO
  * 3166-1 alpha-2, alpha-3, and numeric-3 formats to the 3166-1 alpha-2 format. The class uses
  * static methods, so no instances are needed.
  *
@@ -307,13 +305,11 @@ public class LocaleCountryConverter {
    * Converts a country code to its corresponding ISO 3166-1 alpha-2 code.
    *
    * @param countryCode The country code to be converted. This can be in ISO 3166-1 alpha-2 format
-   *        (e.g., "AR"), ISO 3166-1 alpha-3 format (e.g., "ARG"), or numeric-3 format (e.g.,
-   *        "032").
+   *     (e.g., "AR"), ISO 3166-1 alpha-3 format (e.g., "ARG"), or numeric-3 format (e.g., "032").
    * @return An {@code Optional} containing the ISO 3166-1 alpha-2 code if the conversion is
-   *         successful.
+   *     successful.
    */
   public static Optional<String> convertToISO3166Code(String countryCode) {
     return Optional.ofNullable(conversions.get(countryCode.toUpperCase()));
   }
-
 }
