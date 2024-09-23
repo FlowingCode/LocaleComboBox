@@ -7,7 +7,7 @@
     <groupId>com.flowingcode.vaadin.addons</groupId>
     <artifactId>locale-combo-box-addon</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>LocaleComboBox</name>
+    <name>LocaleComboBox Add-on</name>
     <description>LocaleComboBox Add-on for Vaadin Flow</description>
     <url>https://www.flowingcode.com/en/open-source/</url>
 
