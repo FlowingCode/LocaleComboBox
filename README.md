@@ -1,10 +1,10 @@
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/locale-combo-box-add-on)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/locale-combo-box-add-on.svg)](https://vaadin.com/directory/component/locale-combo-box-add-on)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/locale-combobox-add-on)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/locale-combobox-add-on.svg)](https://vaadin.com/directory/component/locale-combobox-add-on)
 [![Build Status](https://jenkins.flowingcode.com/job/LocaleComboBox-addon/badge/icon)](https://jenkins.flowingcode.com/job/LocaleComboBox-addon)
 [![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/locale-combo-box-addon)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/locale-combo-box-addon)
 [![Javadoc](https://img.shields.io/badge/javadoc-00b4f0)](https://javadoc.flowingcode.com/artifact/com.flowingcode.vaadin.addons/locale-combo-box-addon)
 
-# LocaleComboBox Add-on
+# Locale ComboBox Add-on
 
 [Vaadin ComboBox](https://vaadin.com/docs/latest/components/combo-box) extension that allows to choose between multiple locales.
 
@@ -20,7 +20,7 @@
 
 ## Download release
 
-[Available in Vaadin Directory](https://vaadin.com/directory/component/locale-combo-box-add-on)
+[Available in Vaadin Directory](https://vaadin.com/directory/component/locale-combobox-add-on)
 
 ### Maven install
 
@@ -70,7 +70,7 @@ Then, follow these steps for creating a contribution:
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-LocaleComboBox Add-on is written by Flowing Code S.A.
+Locale ComboBox Add-on is written by Flowing Code S.A.
 
 # Developer Guide
 
