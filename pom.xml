@@ -4,7 +4,7 @@
 
     <groupId>com.flowingcode.vaadin.addons</groupId>
     <artifactId>locale-combo-box-addon</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>Locale ComboBox Add-on</name>
     <description>Locale ComboBox Add-on for Vaadin Flow</description>
     <url>https://www.flowingcode.com/en/open-source/</url>
@@ -40,7 +40,7 @@
         <url>https://github.com/FlowingCode/LocaleComboBox</url>
         <connection>scm:git:git://github.com/FlowingCode/LocaleComboBox.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/LocaleComboBox.git</developerConnection>
-        <tag>master</tag>
+        <tag>1.0.1</tag>
     </scm>
 
     <distributionManagement>
