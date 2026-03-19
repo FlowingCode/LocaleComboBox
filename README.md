@@ -14,6 +14,10 @@
 * Allows to specify which locales are available for selection
 * Provides an option to change the current session locale
 
+## Supported versions
+
+Supported versions: Vaadin 24-25 (add-on version 1.x)
+
 ## Online demo
 
 [Online demo here](http://addonsv24.flowingcode.com/locale-combo-box)
